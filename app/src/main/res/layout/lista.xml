@@ -15,5 +15,9 @@
         android:layout_height="wrap_content"
         android:text="Hello World!"
         android:fontFamily="sans-serif"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="53dp"
+        android:layout_marginBottom="202dp" />
 </RelativeLayout>
