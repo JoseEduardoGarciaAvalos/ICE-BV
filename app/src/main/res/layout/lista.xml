@@ -13,11 +13,67 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="Lista de acciones guardadas"
         android:fontFamily="sans-serif"
         android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:textAlignment="center"
+        android:id="@+id/jltv1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="54dp"
+        android:id="@+id/jltv2" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/jltv2"
+        android:layout_toEndOf="@+id/jltv2"
+        android:layout_marginStart="37dp"
+        android:id="@+id/jll1" />
+
+    <Button
+        android:text="BÚSQUEDA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/jll1"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:id="@+id/jlb1"
+        android:onClick="busqueda" />
+
+    <Button
+        android:text="Ver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/jlb1"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/jlb2"
+        android:onClick="ver" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/jltv3"
+        android:layout_below="@+id/jlb1"
+        android:id="@+id/jllv1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="53dp"
-        android:layout_marginBottom="202dp" />
+        android:id="@+id/jltv3"
+        android:textAlignment="textEnd"
+        android:layout_alignParentStart="true"
+        android:textSize="12sp" />
+
 </RelativeLayout>

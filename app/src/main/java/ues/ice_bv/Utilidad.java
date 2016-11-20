@@ -81,7 +81,7 @@ public class Utilidad {
 
     public static final String B_TODO = Simbolo.SIMBOLOS;
 
-    public static final String C_LISTA = "ns"; //ns nombre y simbolo,
+    public static final String C_LISTA = "nsl1"; //nsl1 nombre, simbolo y precio,
     public static final String C_INFORMACION = "snl1"; //snl1 simbolo, nombre y precio
     public static final String C_SERVICIO = "sl1"; //l1 simbolo y precio
 
