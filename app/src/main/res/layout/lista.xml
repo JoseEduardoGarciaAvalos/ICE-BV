@@ -14,22 +14,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Lista de acciones guardadas"
-        android:fontFamily="sans-serif"
-        android:textSize="18sp"
-        android:textStyle="normal|bold"
-        android:textAlignment="center"
         android:id="@+id/jltv1"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif"
+        android:textColor="@android:color/black" />
 
     <TextView
-        android:text="TextView"
+        android:text="Vista:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_marginTop="54dp"
-        android:id="@+id/jltv2" />
+        android:id="@+id/jltv2"
+        android:textColor="@android:color/black"
+        android:textStyle="normal|bold" />
 
     <Spinner
         android:layout_width="match_parent"
@@ -37,7 +40,8 @@
         android:layout_alignTop="@+id/jltv2"
         android:layout_toEndOf="@+id/jltv2"
         android:layout_marginStart="37dp"
-        android:id="@+id/jll1" />
+        android:id="@+id/jll1"
+        android:layout_alignBottom="@+id/jltv2" />
 
     <Button
         android:text="BÚSQUEDA"
@@ -74,6 +78,7 @@
         android:id="@+id/jltv3"
         android:textAlignment="textEnd"
         android:layout_alignParentStart="true"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:textColor="@android:color/black" />
 
 </RelativeLayout>

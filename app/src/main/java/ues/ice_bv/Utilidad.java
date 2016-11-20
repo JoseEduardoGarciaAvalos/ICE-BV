@@ -24,9 +24,31 @@ public class Utilidad {
     // GUARDAR VARIABLES POR LA CLASE SharedPreferences
     private String base = "configuracion";
     private String lista = "acciones"; // lista de simbolos guardadas por el usuario.
+    private String v1 = "inicio"; // Guardará si es la primera vez que enciende la aplicación.
+    private String v2 = "cambio"; // Guardará si hubo cambio en las acciones guardadas.
 
     private SharedPreferences getConfiguracion(Context e) {
         return e.getSharedPreferences(base, 0);
+    }
+
+    public void setPrimeraVez(Context e, boolean bandera) {
+        SharedPreferences.Editor editor = getConfiguracion(e).edit();
+        editor.putBoolean(v1, bandera);
+        editor.commit();
+    }
+
+    public boolean isPrimeraVez(Context e) {
+        return getConfiguracion(e).getBoolean(v1, true);
+    }
+
+    public void setCambioVariables(Context e, boolean bandera) {
+        SharedPreferences.Editor editor = getConfiguracion(e).edit();
+        editor.putBoolean(v2, bandera);
+        editor.commit();
+    }
+
+    public boolean isCambioVariables(Context e) {
+        return getConfiguracion(e).getBoolean(v2, true);
     }
 
     public String getAcciones(Context e) {
@@ -40,12 +62,17 @@ public class Utilidad {
     public void setAccion(Context e, String simbolo, String minimo) {
         SharedPreferences.Editor editor = getConfiguracion(e).edit();
         editor.putString(simbolo, minimo);
+        String valor = getMinimo(e, simbolo);
+        if (!valor.equals(minimo)) {
+            editor.putBoolean(v2, true);
+        }
 
-        if (getMinimo(e, simbolo).equals("")) {
+        if (valor.equals("")) {
             String simbolos = getConfiguracion(e).getString(lista, "");
             String mas = simbolos.equals("") ? "" : "+";
             editor.putString(lista, simbolos + mas + simbolo); // Agregar el simbolo en la lista de simbolos
         }
+
         editor.commit();
     }
 
@@ -58,6 +85,7 @@ public class Utilidad {
         simbolos = simbolos.replace(simbolo, ""); // Eliminar si es el unico.
         editor.remove(simbolo);
         editor.putString(lista, simbolos); // Actualizar la lista de simbolos
+        editor.putBoolean(v2, true);
         editor.commit();
     }
 
@@ -113,7 +141,6 @@ public class Utilidad {
                 j++;
             }
         }
-
         new PeticionYahoo().execute(url);
     }
 
@@ -121,7 +148,6 @@ public class Utilidad {
 
         protected String[] doInBackground(String... urls) {
             Log.d(TAG, "inicio");
-
             String[] aux = new String[]{};
             String cadena = "";
             try {
@@ -180,13 +206,13 @@ public class Utilidad {
                 Log.d(TAG, "No se puede leer desde internet: " + eio.toString());  //System.out.println();
                 setPeticionErronea(aux);
             }
+            // Si no hay error...entonces
             if (!estaErronea) {
                 setPeticionCompleta(aux);
             }
             Log.d(TAG, "fin");
             return aux;
         }
-
 
     }
 
