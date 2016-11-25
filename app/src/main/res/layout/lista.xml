@@ -77,8 +77,30 @@
         android:layout_alignParentEnd="true"
         android:id="@+id/jltv3"
         android:textAlignment="textEnd"
-        android:layout_alignParentStart="true"
         android:textSize="12sp"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:layout_alignStart="@+id/jlb2" />
+
+    <TextView
+        android:text="Acerca de..."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/jltv4"
+        android:layout_toStartOf="@+id/jltv3"
+        android:textSize="12sp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textAllCaps="false"
+        android:onClick="acercaDe" />
+
+    <Button
+        android:text="Eliminar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/jlb2"
+        android:layout_alignParentStart="true"
+        android:id="@+id/jlb3"
+        android:onClick="eliminar" />
 
 </RelativeLayout>

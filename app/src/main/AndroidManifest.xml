@@ -28,7 +28,8 @@
         </receiver>
 
         <activity android:name=".Busqueda" />
-        <activity android:name=".Informacion"></activity>
+        <activity android:name=".Informacion" />
+        <activity android:name=".AcercaDe"></activity>
     </application>
 
 </manifest>

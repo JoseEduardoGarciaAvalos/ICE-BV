@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -93,6 +94,10 @@ public class Utilidad {
         SharedPreferences.Editor editor = getConfiguracion(e).edit();
         editor.clear();
         editor.commit();
+    }
+
+    public void mostrarMensaje(Context e, String mensaje){
+        Toast.makeText(e,mensaje, Toast.LENGTH_LONG).show();
     }
 
     // REALIZAR PETICIONES

@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.widget.Toast;
 
 
 /**
@@ -31,7 +30,7 @@ public class Servicio extends Service {
     public void onCreate() {
         super.onCreate();
 
-        Toast.makeText(this,"Servicio iniciado", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,"Servicio iniciado", Toast.LENGTH_LONG).show();
         bandera = true;
     }
     // Evento que se ejecuta cuando se instancia el servicio
@@ -104,7 +103,7 @@ public class Servicio extends Service {
     public void onDestroy() {
         super.onDestroy();
 
-        Toast.makeText(this,"Servicio destruido", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,"Servicio destruido", Toast.LENGTH_LONG).show();
         bandera = false;
     }
 

@@ -27,6 +27,7 @@ public class Lista extends AppCompatActivity {
 
     private TextView jltv3;
     private Button jlb2;
+    private Button jlb3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class Lista extends AppCompatActivity {
         jll1 = (Spinner) findViewById(R.id.jll1);
         jltv3 = (TextView) findViewById(R.id.jltv3);
         jlb2 = (Button) findViewById(R.id.jlb2);
+        jlb3 = (Button) findViewById(R.id.jlb3);
         // 2. Definir Datos y evento
         datosLista = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         jllv1.setAdapter(datosLista);
@@ -55,7 +57,7 @@ public class Lista extends AppCompatActivity {
         datosCombo = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, vista);
         jll1.setAdapter(datosCombo);
         // 3. Cargar datosLista
-        guardarDatos();
+        iniciarServicio();
         ver(null);
         utilidad.setCambioVariables(this, false);
     }
@@ -63,12 +65,13 @@ public class Lista extends AppCompatActivity {
     // Métodos para los eventos en los botones.
     public void ver(View v) {
         utilidad.setPeticionCancelada(true);
-        if(hayHilo){
+        if (hayHilo) {
             setJlb2("Ver", false);
             return;
         } else {
             hayHilo = true;
             setJlb2("Cancelar", false);
+            setJlb3(false);
         }
         // Si lo que está seleccionado en el combo es igual a vista[0] ...entonces
         if (jll1.getSelectedItem().toString().equals(vista[0])) {
@@ -84,6 +87,19 @@ public class Lista extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void acercaDe(View v) {
+        utilidad.setPeticionCancelada(true);
+        Intent i = new Intent(getApplicationContext(), AcercaDe.class);
+        startActivity(i);
+    }
+
+    public void eliminar(View v) {
+        utilidad.setPeticionCancelada(true);
+        utilidad.eliminarTodo(this);
+        utilidad.setPrimeraVez(this, false);
+        utilidad.mostrarMensaje(this,"Se eliminarón todas las acciones");
+        clearDatosLista();
+    }
 
     // Métodos para la actualización de datos
     public void actualizarTodo(final String simbolos) {
@@ -117,6 +133,7 @@ public class Lista extends AppCompatActivity {
                 Log.d(TAG, "Fin");
                 hayHilo = false;
                 setJlb2("Ver", true);
+                setJlb3(true);
             }
         }).start();
     }
@@ -162,6 +179,7 @@ public class Lista extends AppCompatActivity {
                 Log.d(TAG, "Fin");
                 hayHilo = false;
                 setJlb2("Ver", true);
+                setJlb3(true);
             }
         }).start();
     }
@@ -231,19 +249,37 @@ public class Lista extends AppCompatActivity {
         runOnUiThread(new Runnable() { // Cuando se necesita modificar una variable de vista en un hilo, solo se hará por este hilo.
             @Override
             public void run() {
-                jlb2.setText(valor); jlb2.setEnabled(habilitado);
+                jlb2.setText(valor);
+                jlb2.setEnabled(habilitado);
             }
         });
     }
+
+    private synchronized void setJlb3(final boolean habilitado) {
+        runOnUiThread(new Runnable() { // Cuando se necesita modificar una variable de vista en un hilo, solo se hará por este hilo.
+            @Override
+            public void run() {
+                jlb3.setEnabled(habilitado);
+            }
+        });
+    }
+
+    // Método para iniciar el servicio
+    private void iniciarServicio() {
+        if (utilidad.isPrimeraVez(this)) {
+            guardarDatos();
+            Intent service = new Intent(this, Servicio.class);
+            startService(service);
+            utilidad.setPrimeraVez(this, false);
+        }
+    }
+
     // Método para guardar datos iniciales
     private void guardarDatos() {
-        if (utilidad.isPrimeraVez(this)) {
-            String[] simbolos = {"AAAP", "TATT", "RARE", "SGMO", "YIN", "SLCT", "QLC", "ZYNE"};
+        String[] simbolos = {"AAAP", "TATT", "RARE", "SGMO", "YIN", "SLCT", "QLC", "ZYNE"};
 
-            for (int i = 0; i < simbolos.length; i++) {
-                utilidad.setAccion(this, simbolos[i], "10");
-            }
-            utilidad.setPrimeraVez(this, false);
+        for (int i = 0; i < simbolos.length; i++) {
+            utilidad.setAccion(this, simbolos[i], "10");
         }
     }
 
