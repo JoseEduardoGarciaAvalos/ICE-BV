@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ public class Lista extends AppCompatActivity {
     private static final String[] vista = {"Todo", "Alertas"};
 
     private TextView jltv3;
+    private Button jlb2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class Lista extends AppCompatActivity {
         jllv1 = (ListView) findViewById(R.id.jllv1);
         jll1 = (Spinner) findViewById(R.id.jll1);
         jltv3 = (TextView) findViewById(R.id.jltv3);
+        jlb2 = (Button) findViewById(R.id.jlb2);
         // 2. Definir Datos y evento
         datosLista = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         jllv1.setAdapter(datosLista);
@@ -53,13 +56,20 @@ public class Lista extends AppCompatActivity {
         jll1.setAdapter(datosCombo);
         // 3. Cargar datosLista
         guardarDatos();
-        actualizarTodo(utilidad.getAcciones(this));
+        ver(null);
         utilidad.setCambioVariables(this, false);
     }
 
     // Métodos para los eventos en los botones.
     public void ver(View v) {
         utilidad.setPeticionCancelada(true);
+        if(hayHilo){
+            setJlb2("Ver", false);
+            return;
+        } else {
+            hayHilo = true;
+            setJlb2("Cancelar", false);
+        }
         // Si lo que está seleccionado en el combo es igual a vista[0] ...entonces
         if (jll1.getSelectedItem().toString().equals(vista[0])) {
             actualizarTodo(utilidad.getAcciones(this));
@@ -69,7 +79,6 @@ public class Lista extends AppCompatActivity {
     }
 
     public void busqueda(View v) {
-        utilidad.eliminarTodo(this);
         utilidad.setPeticionCancelada(true);
         Intent i = new Intent(getApplicationContext(), Busqueda.class);
         startActivity(i);
@@ -85,16 +94,13 @@ public class Lista extends AppCompatActivity {
 
             @Override
             public void run() {// El hilo se finaliza a sí mismo cuando termina su trabajo.
-                if (hayHilo) {
-                    return;
-                }
-                hayHilo = true;
                 Log.d(TAG, "inicio");
                 // 1. Iniciar
                 int i = 0;
                 ejecutarAnimacion();
                 utilidad.iniciarPeticion(Utilidad.A_LINEAxLINEA, simbolos, Utilidad.C_LISTA, 3);
                 clearDatosLista();
+                setJlb2("Cancelar", true);
                 Log.d(TAG, "simbolos " + simbolos);
                 // 2. Terminará el trabajo (salir del while) hasta que la petición se complete, haya algún error o se cancela por algún motivo.
                 while (!utilidad.isPeticionCompleta() && !utilidad.isPeticionErronea() && !utilidad.isPeticionCancelada()) {
@@ -110,6 +116,7 @@ public class Lista extends AppCompatActivity {
                 setJltv3(resultado, true);
                 Log.d(TAG, "Fin");
                 hayHilo = false;
+                setJlb2("Ver", true);
             }
         }).start();
     }
@@ -122,16 +129,13 @@ public class Lista extends AppCompatActivity {
 
             @Override
             public synchronized void run() {// El hilo se finaliza a sí mismo cuando termina su trabajo.
-                if (hayHilo) {
-                    return;
-                }
-                hayHilo = true;
                 Log.d(TAG, "inicio");
                 // 1. Iniciar
                 int i = 0;
                 ejecutarAnimacion();
                 utilidad.iniciarPeticion(Utilidad.A_UNOxUNO, simbolos, Utilidad.C_LISTA, 3);
                 clearDatosLista();
+                setJlb2("Cancelar", true);
                 Log.d(TAG, "simbolos " + simbolos);
                 // 2. Terminará el trabajo (salir del while) hasta que la petición se complete, haya algún error o se cancela por algún motivo.
                 while (!utilidad.isPeticionCompleta() && !utilidad.isPeticionErronea() && !utilidad.isPeticionCancelada()) {
@@ -157,6 +161,7 @@ public class Lista extends AppCompatActivity {
                 setJltv3(resultado, true);
                 Log.d(TAG, "Fin");
                 hayHilo = false;
+                setJlb2("Ver", true);
             }
         }).start();
     }
@@ -222,6 +227,14 @@ public class Lista extends AppCompatActivity {
         });
     }
 
+    private synchronized void setJlb2(final String valor, final boolean habilitado) {
+        runOnUiThread(new Runnable() { // Cuando se necesita modificar una variable de vista en un hilo, solo se hará por este hilo.
+            @Override
+            public void run() {
+                jlb2.setText(valor); jlb2.setEnabled(habilitado);
+            }
+        });
+    }
     // Método para guardar datos iniciales
     private void guardarDatos() {
         if (utilidad.isPrimeraVez(this)) {
