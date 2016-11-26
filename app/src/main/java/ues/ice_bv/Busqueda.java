@@ -32,7 +32,7 @@ public class Busqueda extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.busqueda);
         // 1. Relacionar objetos
-        jblv1 = (ListView) findViewById(R.id.jllv1);
+        jblv1 = (ListView) findViewById(R.id.jblv1);
         jbet1 = (EditText) findViewById(R.id.jbet1);
         jbtv3 = (TextView) findViewById(R.id.jbtv3);
         jbb2 = (Button) findViewById(R.id.jbb2);
