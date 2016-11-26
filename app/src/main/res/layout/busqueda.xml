@@ -52,7 +52,7 @@
         android:layout_alignTop="@+id/jbb1"
         android:layout_centerHorizontal="true"
         android:id="@+id/jbb2"
-        android:onClick="ver" />
+        android:onClick="buscar" />
 
     <ListView
         android:layout_width="match_parent"
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
         android:id="@+id/jbb1"
-        android:onClick="busqueda"
+        android:onClick="ver"
         android:layout_below="@+id/jbet1"
         android:layout_alignParentEnd="true" />
 
