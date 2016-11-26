@@ -9,14 +9,78 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ues.ice_bv.Busqueda">
-
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Lista de acciones registradas en NASDAQ"
+        android:id="@+id/jbtv1"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="43dp"
-        android:id="@+id/textView" />
+        android:layout_alignParentEnd="true"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:text="Nombre:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="54dp"
+        android:id="@+id/jbtv2"
+        android:textColor="@android:color/black"
+        android:textStyle="normal|bold" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:layout_alignBottom="@+id/jbtv2"
+        android:id="@+id/jbet1"
+        android:layout_alignTop="@+id/jbtv2"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/jbtv2" />
+
+    <Button
+        android:text="BUSCAR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/jbb1"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/jbb2"
+        android:onClick="ver" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/jbtv3"
+        android:layout_below="@+id/jbb1"
+        android:id="@+id/jblv1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/jbtv3"
+        android:textAlignment="textEnd"
+        android:textSize="12sp"
+        android:textColor="@android:color/black"
+        android:layout_alignStart="@+id/jbb2" />
+
+    <Button
+        android:text="VER"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:id="@+id/jbb1"
+        android:onClick="busqueda"
+        android:layout_below="@+id/jbet1"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>
