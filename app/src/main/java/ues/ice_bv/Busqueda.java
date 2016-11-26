@@ -96,7 +96,7 @@ public class Busqueda extends AppCompatActivity {
                 while (!utilidad.isPeticionCompleta() && !utilidad.isPeticionErronea() && !utilidad.isPeticionCancelada()) {
                     // 2.1 Conseguir valor.
                     String valor = utilidad.getPeticionParcial();
-                    if ((valor != null && valor.startsWith(filtro) || filtro.equals("")) {
+                    if ((valor != null && valor.startsWith(filtro) || filtro.equals(""))) {
                         i++;
                         // 2.1.1 Iniciar hilo UI para actualizarTodo la UI
                         setDatosLista(valor);
