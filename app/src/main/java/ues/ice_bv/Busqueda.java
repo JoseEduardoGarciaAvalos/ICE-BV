@@ -58,7 +58,7 @@ public class Busqueda extends AppCompatActivity {
     public void buscar(View v) {
         utilidad.setPeticionCancelada(true);
         if (hayHilo) {
-            setJbb2("Ver", false);
+            setJbb2("Buscar", false);
             return;
         } else {
             hayHilo = true;
@@ -106,7 +106,7 @@ public class Busqueda extends AppCompatActivity {
                 setJbtv3(resultado, true);
                 Log.d(TAG, "Fin");
                 hayHilo = false;
-                setJbb2("Ver", true);
+                setJbb2("Buscar", true);
             }
         }).start();
     }
