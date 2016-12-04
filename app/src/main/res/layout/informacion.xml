@@ -8,90 +8,99 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ues.ice_bv.Informacion">
+    tools:context="ues.ice_bv.Informacion"
+    android:scrollbars="none"
+    android:scrollbarAlwaysDrawVerticalTrack="false">
 
-    <TextView
-        android:text="Información"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:textSize="18sp"
-        android:textAlignment="center"
-        android:textStyle="normal|bold"
-        android:textColor="@android:color/black" />
-
-    <ListView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/textView3"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/jitv2"
-        android:id="@+id/jilv1" />
+        android:layout_alignParentStart="true">
 
-    <TextView
-        android:text="Notificación"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+        android:id="@+id/jitv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/jitv2"
-        android:textSize="18sp"
-        android:textAlignment="center"
-        android:textStyle="normal|bold"
-        android:textColor="@android:color/black"
-        android:layout_marginBottom="181dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="Notificar:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:id="@+id/jitv3"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:layout_below="@+id/jilv1"
-        android:layout_alignParentStart="true" />
-
-    <Switch
-        android:text="Switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/jitv3"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="61dp"
-        android:id="@+id/jis1" />
+        android:layout_alignParentStart="true"
+        android:text="Información"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="normal|bold" />
 
-    <TextView
-        android:text="Mínimo:"
+    <ListView
+        android:id="@+id/jilv1"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/jitv1"
+        android:layout_height="150dp" />
+
+            <TextView
+                android:id="@+id/jitv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notificación"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="normal|bold"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/jilv1"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+        android:id="@+id/jitv3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/jis1"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="27dp"
+        android:layout_below="@+id/jitv2"
+                android:text="Notificar:"
+        android:textAlignment="center"
+        android:textColor="@android:color/black" />
+
+    <TextView
         android:id="@+id/jitv4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/jis1"
+        android:layout_marginTop="27dp"
+        android:text="Mínimo:"
         android:textColor="@android:color/black" />
 
     <EditText
+        android:id="@+id/jiet1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/jiet1"
-        android:layout_marginStart="35dp"
         android:layout_alignBottom="@+id/jitv4"
-        android:layout_toEndOf="@+id/jitv3"
-        android:layout_below="@+id/jis1" />
+        android:layout_below="@+id/jis1"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/jitv3" />
 
     <Button
-        android:text="Guardar"
+        android:id="@+id/jib1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/jis1"
-        android:id="@+id/jib1"
-        android:onClick="guardar" />
+        android:onClick="guardar"
+        android:text="Guardar"
+        android:layout_below="@+id/jiet1"
+        android:layout_centerHorizontal="true" />
 
+    <Switch
+        android:id="@+id/jis1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Switch"
+        android:layout_alignBaseline="@+id/jitv3"
+        android:layout_alignBottom="@+id/jitv3"
+        android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

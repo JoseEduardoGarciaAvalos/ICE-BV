@@ -45,7 +45,7 @@ public class Informacion extends AppCompatActivity {
         actualizar(simbolo);
         // 4. Habilitar switch
         String minimo = utilidad.getMinimo(this, simbolo);
-        if(minimo.equals("")){
+        if (minimo.equals("")) {
             jis1.setChecked(false);
             jiet1.setText("");
         } else {
@@ -69,15 +69,17 @@ public class Informacion extends AppCompatActivity {
                 utilidad.iniciarPeticion(Utilidad.A_UNOxUNO, simbolo, Utilidad.C_INFORMACION, LIM);
                 clearDatosLista();
                 Log.d(TAG, "simbolos " + simbolo);
-                String precio = "";
-                    // 2.1 Conseguir valor.
-                    String simbolo = utilidad.getPeticionParcial();
-                    String nombre = utilidad.getPeticionParcial();
-                    precio = utilidad.getPeticionParcial();
-                    // 2.1.1 Iniciar hilo UI para actualizarTodo la UI
-                    setDatosLista("Símbolo: " + simbolo);
-                    setDatosLista("Nombre: " + nombre);
-                    setDatosLista("Precio: $ " + precio + " (millones)");
+                // 2.1 Conseguir valor.
+                String simbolo = utilidad.getPeticionParcial();
+                String nombre = utilidad.getPeticionParcial();
+                String precio = utilidad.getPeticionParcial();
+                simbolo = simbolo == null ? "N/A" : simbolo;
+                nombre = nombre == null ? "N/A" : nombre;
+                precio = precio == null ? "" : "$ " + precio + " (millones)";
+                // 2.1.1 Iniciar hilo UI para actualizarTodo la UI
+                setDatosLista("Símbolo: " + simbolo);
+                setDatosLista("Nombre: " + nombre);
+                setDatosLista("Precio: " + precio);
                 try {
 
                     Double.parseDouble(precio); // Convertir string a numero
@@ -119,7 +121,7 @@ public class Informacion extends AppCompatActivity {
 
     public void guardar(View v) {
 
-        if(jis1.isChecked()){
+        if (jis1.isChecked()) {
             String minimo = jiet1.getText().toString();
             utilidad.setAccion(this, simbolo, minimo);
         } else {
