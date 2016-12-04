@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".Servicio" />
+        <service android:name=".Servicio" android:process=":remote"/>
 
         <receiver android:name=".ServicioBoot">
             <intent-filter>

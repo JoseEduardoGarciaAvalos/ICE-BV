@@ -16,7 +16,7 @@ import android.util.Log;
 public class Servicio extends Service {
     private static final String TAG = "LOGs"; //Identificador en el log.
     private boolean bandera = true;
-    private Utilidad2 utilidad = new Utilidad2();
+    private Utilidad utilidad = new Utilidad();
 
     @Override
     public IBinder onBind(Intent intent) {
