@@ -75,11 +75,11 @@ public class Informacion extends AppCompatActivity {
                 String precio = utilidad.getPeticionParcial();
                 simbolo = simbolo == null ? "N/A" : simbolo;
                 nombre = nombre == null ? "N/A" : nombre;
-                precio = precio == null ? "" : "$ " + precio + " (millones)";
+                precio = precio == null ? "N/A" : precio;
                 // 2.1.1 Iniciar hilo UI para actualizarTodo la UI
                 setDatosLista("Símbolo: " + simbolo);
                 setDatosLista("Nombre: " + nombre);
-                setDatosLista("Precio: " + precio);
+                setDatosLista("Precio: " + (precio.equals("N/A") ? precio:"$ " + precio  + " (millones)"));
                 try {
 
                     Double.parseDouble(precio); // Convertir string a numero
@@ -128,5 +128,6 @@ public class Informacion extends AppCompatActivity {
             utilidad.eliminarAccion(this, simbolo);
         }
 
+        finish();
     }
 }
