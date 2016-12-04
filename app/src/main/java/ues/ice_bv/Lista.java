@@ -98,7 +98,7 @@ public class Lista extends AppCompatActivity {
         utilidad.eliminarTodo(this);
         utilidad.setPrimeraVez(this, false);
         utilidad.mostrarMensaje(this,"Se eliminarón todas las acciones");
-        clearDatosLista();
+        ver(null);
     }
 
     // Métodos para la actualización de datos
