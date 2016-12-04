@@ -72,6 +72,9 @@ public class Utilidad {
             String simbolos = getConfiguracion(e).getString(lista, "");
             String mas = simbolos.equals("") ? "" : "+";
             editor.putString(lista, simbolos + mas + simbolo); // Agregar el simbolo en la lista de simbolos
+            Toast.makeText(e,"Acción guardada correctamente", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(e,"Acción actualizada correctamente", Toast.LENGTH_LONG).show();
         }
 
         editor.commit();
@@ -88,6 +91,8 @@ public class Utilidad {
         editor.putString(lista, simbolos); // Actualizar la lista de simbolos
         editor.putBoolean(v2, true);
         editor.commit();
+
+        Toast.makeText(e,"Acción eliminada correctamente", Toast.LENGTH_LONG).show();
     }
 
     public void eliminarTodo(Context e) {
