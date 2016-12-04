@@ -37,11 +37,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
         android:ems="10"
         android:layout_alignBottom="@+id/jbtv2"
         android:id="@+id/jbet1"
-        android:layout_alignTop="@+id/jbtv2"
         android:layout_alignParentEnd="true"
         android:layout_toEndOf="@+id/jbtv2" />
 
