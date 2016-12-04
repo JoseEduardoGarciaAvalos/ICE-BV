@@ -16,7 +16,7 @@ import android.util.Log;
 public class Servicio extends Service {
     private static final String TAG = "LOGs"; //Identificador en el log.
     private boolean bandera = true;
-    private Utilidad utilidad = new Utilidad();
+    private Utilidad2 utilidad = new Utilidad2();
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -60,6 +60,9 @@ public class Servicio extends Service {
                             // 2.1 Conseguir valores.
                             String simbolo = utilidad.getPeticionParcial();
                             String valor2 = utilidad.getPeticionParcial();
+                            if(simbolo == null || valor2 == null){
+                                break;
+                            }
                             try{
                                 double minimo = Double.parseDouble(utilidad.getMinimo(getApplicationContext(),simbolo));
                                 double precio = Double.parseDouble(valor2);
@@ -71,6 +74,7 @@ public class Servicio extends Service {
                             } catch (NumberFormatException e){
                             }
                         }
+                        Log.d(TAG, "notificacion ");
                         if(notificar){
                             // Instanciamos e inicializamos nuestro manager.
                             NotificationManager nManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
